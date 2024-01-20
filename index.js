@@ -7,8 +7,9 @@ app.use(express.json({ extended: false }));
 app.use(cors());
 app.get('/', (req, res) => {
 	const clientIP = req.headers['x-forwarded-for'] || req.ip;
-	console.log('Client IP:', clientIP);
-	res.json({ ip: clientIP });
+	const ipsArray = clientIP.split(', ');
+	console.log('Client IP:', ipsArray[0]);
+	res.json({ ip: ipsArray[0] });
 });
 
 app.listen(PORT, () => {
